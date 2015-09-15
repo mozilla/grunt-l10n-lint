@@ -4,7 +4,7 @@
   "description": "Lint your translations",
   "main": "index.js",
   "scripts": {
-    "test": "grunt nodeunit"
+    "test": "grunt test"
   },
   "author": "Mozilla (https://mozilla.org/)",
   "license": "MPL-2.0",
@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "grunt": "0.4.5",
+    "grunt-contrib-jshint": "0.11.3",
     "grunt-contrib-nodeunit": "0.4.1"
   }
 }
