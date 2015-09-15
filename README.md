@@ -51,6 +51,7 @@ that contain HTML that is malformed, contains unexpected tags, attributes,
 or attribute values.
 
 The translated strings are checked, one by one, for:
+
 1. Grossly malformed HTML
   * Unnamed tags (e.g. `<>`)
   * Unclosed tags (e.g., `<span>This span is not closed`)
