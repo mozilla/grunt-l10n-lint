@@ -1,0 +1,19 @@
+{
+  "name": "grunt-l10n-lint",
+  "version": "0.0.0",
+  "description": "Lint your translations",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "author": "Mozilla (https://mozilla.org/)",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "gettext-parser": "1.1.1",
+    "htmlparser2": "3.8.3"
+  },
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-contrib-nodeunit": "0.4.1"
+  }
+}

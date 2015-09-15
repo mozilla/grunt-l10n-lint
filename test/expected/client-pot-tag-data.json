@@ -1,0 +1,25 @@
+{
+  "a": {
+    "href": {
+      "/signup": true,
+      "/signin": true,
+      "https://www.gravatar.com": true,
+      "/confirm_account_unlock": true,
+      "%(termsUri)s": true,
+      "%(privacyUri)s": true,
+      "/legal/terms": true,
+      "/legal/privacy": true
+    },
+    "id": {
+      "service-tos": true,
+      "service-pp": true,
+      "fxa-tos": true,
+      "fxa-pp": true
+    }
+  },
+  "span": {
+    "tabindex": {
+      "1": true
+    }
+  }
+}
