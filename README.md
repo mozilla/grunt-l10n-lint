@@ -53,44 +53,43 @@ or attribute values.
 The translated strings are checked, one by one, for:
 
 1. Grossly malformed HTML
-  * Unnamed tags (e.g. `<>`)
-  * Unclosed tags (e.g., `<span>This span is not closed`)
-  * Mismatched &lt; or &gt; (e.g., `<span`)
-  * Tags closed in the wrong order.
+  * Unnamed tags (e.g. `<>`, `</>`)
+  * Unclosed tags, mismatched `<` or `>` (e.g., `<span`, `span>`)
+  * Unclosed elements (e.g., `<span>This span is not closed`)
+  * Elements closed in the wrong order.
     * (e.g., `<a><span>closed out of order</a></span>`)
 1. Unexpected tags
-  * If the source `.pot` files contain only `a` and `span` tags, the translated
-      ,files must:
-      1. only contain `a` and `span` elements.
-      1. All other elements cause an error.
+  * If the source `.pot` files contain only `a` and `span` tags, the translated files:
+      1. Can contain 0 or more `a` and `span` tags.
+      1. All other tags cause an error.
 1. Unexpected tag attributes
   * If the source `.pot` files contain `<a href="/signin" target="_blank">`,
-      `<button id="logout">`, and `<div>...`, the translated files must:
-      1. `a` elements can have 0, 1 or both `href` and `target` attributes.
-      1. `button` elements can 0 or 1 `id` attribute.
-      1. All other attributes on any element will cause an error.
+      `<button id="logout">`, and `<div>...`, the translated files:
+      1. Can have 0 or more `a` elements, which can have 0, 1 or both `href` and `target` attributes.
+      1. Can have 0 or more `button` elements, which can 0 or 1 `id` attribute.
+      1. All other attributes will cause an error.
 1. Unexpected tag attribute values
   * If the source `.pot` files contain `<a href="/signin" target="_blank">`
-      and `<button id="logout">`, and `<div>...`, the translated files must:
-      1. `a` elements can have one or both `href="/signin""` or
-         `targe="_blank"`.
-      1. `button` elements can have `id="logout"`
-      1. `div` elements can have no attributes.
-      1. Any other attributes or attribute values cause an error.
+      and `<button id="logout">`, and `<div>...`, the translated files:
+      1. Can have 0 or more `a` tags, which can have 0, 1 or both `href="/signin""` or
+         `target="_blank"` attributes.
+      1. Can have 0 or more `button` elements, which can have 0 or 1 `id="logout"` attribute.
+      1. Can have 0 or more `div` elements, which can have no attributes.
+      1. All other attributes or attribute values cause an error.
 
 The target translation checks are very coarse.
 
 For example, if the source `.pot` file contains a single `a` element,
 _any_ translated string can contain an `a` element.
 
-In addition, if the source `.pot` file contains two `a` elements, one
-with `id="first-anchor"` and another with `id="second-anchor"`, any translated
+If the source `.pot` file contains two `a` elements, one
+with `id="first-anchor"` and another with `id="second-anchor"`, _any_ translated
 string could contain an `a` element with either `id`.
 
-All translated strings are assumed to be fully formed, independent items, and
-are checked individually. Quotes that surround attribute values are not
-checked, as long as the tag correctly closes and the attribute value matches
-an expected value, the value is accepted.
+All translated strings are assumed to be independent items, anduare checked
+individually. Quotes that surround attribute values are not checked, as long
+as the tag correctly closes and the attribute value matches an expected value,
+the value is accepted.
 
 ## Running the tests
 
@@ -109,6 +108,3 @@ Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 This software is available under version 2.0 of the MPL:
 
   https://www.mozilla.org/MPL/
-
-
-
