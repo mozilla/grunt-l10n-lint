@@ -1,11 +1,17 @@
 {
   "name": "grunt-l10n-lint",
   "version": "0.0.0",
-  "description": "Lint your translations",
-  "main": "index.js",
+  "description": "A grunt task to check l10n .po files for unexpected/malformed HTML.",
+  "main": "Gruntfile.js",
   "scripts": {
     "test": "grunt test"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mozilla/grunt-l10n-lint"
+  },
+  "homepage": "https://github.com/mozilla/grunt-l10n-lint",
+  "bugs": "https://github.com/mozilla/grunt-l10n-lint/issues",
   "author": "Mozilla (https://mozilla.org/)",
   "license": "MPL-2.0",
   "dependencies": {
@@ -18,5 +24,6 @@
     "grunt-contrib-nodeunit": "0.4.1",
     "grunt-eslint": "17.1.0",
     "grunt-jscs": "2.1.0"
-  }
+  },
+  "readmeFilename": "README.md"
 }
