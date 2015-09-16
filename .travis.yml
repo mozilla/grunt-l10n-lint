@@ -1,0 +1,32 @@
+language: node_js
+
+node_js:
+  - "0.10"
+  - "4"
+
+sudo: false
+
+cache:
+  directories:
+    - node_modules
+
+notifications:
+  irc:
+    channels:
+      - 'irc.mozilla.org#fxa-bots'
+    use_notice: false
+    skip_join: false
+
+before_install:
+  # Update to latest npm 2
+  - npm install -g npm@2
+  - npm install -g grunt-cli
+
+install:
+  - travis_retry npm install --silent
+  - npm ls --depth 0 | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g'
+  - grunt lint
+
+# now run the tests!
+script:
+  - npm test
