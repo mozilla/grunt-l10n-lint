@@ -1,5 +1,8 @@
 # grunt-l10n-lint
 
+[![Build
+Status](https://travis-ci.org/mozilla/grunt-l10n-lint.svg?branch=master)](https://travis-ci.org/mozilla/grunt-l10n-lint)
+
 grunt-l10n-lint is a grunt task to check l10n `.po` files for
 unexpected/malformed HTML.
 
