@@ -6,6 +6,31 @@ module.exports = function (grunt) {
   'use strict';
 
   grunt.initConfig({
+    eslint: {
+      options: {
+        eslintrc: '.eslintrc'
+      },
+      all: [
+        'Gruntfile.js',
+        'lib/**/*.js',
+        'tasks/**/*.js',
+        'test/**/*.js'
+      ]
+    },
+
+    jscs: {
+      options: {
+        config: '.jscsrc'
+      },
+
+      src: [
+        'Gruntfile.js',
+        'lib/**/*.js',
+        'tasks/**/*.js',
+        'test/**/*.js'
+      ]
+    },
+
     'l10n-lint': {
       test: {
         options: {
@@ -19,27 +44,16 @@ module.exports = function (grunt) {
 
     nodeunit: {
       tests: ['test/*-test.js']
-    },
-
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'lib/**/*.js',
-        'tasks/**/*.js',
-        'test/**/*.js'
-      ],
-      options: {
-        jshintrc: '.jshintrc'
-      }
     }
   });
 
   grunt.loadTasks('tasks');
 
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-eslint');
+  grunt.loadNpmTasks('grunt-jscs');
 
-  grunt.registerTask('lint', ['jshint']);
+  grunt.registerTask('lint', ['eslint', 'jscs']);
   grunt.registerTask('test', ['nodeunit']);
 };
 

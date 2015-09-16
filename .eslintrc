@@ -1,0 +1,9 @@
+{
+  "extends": "fxa",
+  "rules": {
+    "handle-callback-err": 0,
+    // HACK: https://github.com/eslint/eslint/issues/3591
+    "indent": 1,
+    "no-console": 0
+  }
+}
