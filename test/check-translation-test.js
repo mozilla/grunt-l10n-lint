@@ -157,7 +157,7 @@ exports.check_translations = {
 
   'malformed html - no opening or closing tag name': function (test) {
     checkTranslation(
-      '<>no opening tag name</>',
+      '<>no opening or closing tag name</>',
       expectedTagData,
       function (err) {
         test.ok(err instanceof MalformedHTMLError);
@@ -221,6 +221,28 @@ exports.check_translations = {
     );
   },
 
+  'malformed html - matched brackets without tags': function (test) {
+    checkTranslation(
+      '> <',
+      expectedTagData,
+      function (err) {
+        test.ok(err instanceof MalformedHTMLError);
+        test.done();
+      }
+    );
+  },
+
+  'malformed html - unmatched closing bracket after tag': function (test) {
+    checkTranslation(
+      '<a> >',
+      expectedTagData,
+      function (err) {
+        test.ok(err instanceof MalformedHTMLError);
+        test.done();
+      }
+    );
+  },
+
   'malformed html - nested tags closed out of order': function (test) {
     checkTranslation(
       '<span><a href="/signin">Signin</span></a>',
@@ -230,8 +252,6 @@ exports.check_translations = {
         test.done();
       }
     );
-  },
-
-
+  }
 };
 
