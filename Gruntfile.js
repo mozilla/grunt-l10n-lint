@@ -18,19 +18,6 @@ module.exports = function (grunt) {
       ]
     },
 
-    jscs: {
-      options: {
-        config: '.jscsrc'
-      },
-
-      src: [
-        'Gruntfile.js',
-        'lib/**/*.js',
-        'tasks/**/*.js',
-        'test/**/*.js'
-      ]
-    },
-
     'l10n-lint': {
       test: {
         options: {
@@ -51,9 +38,8 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-eslint');
-  grunt.loadNpmTasks('grunt-jscs');
 
-  grunt.registerTask('lint', ['eslint', 'jscs']);
+  grunt.registerTask('lint', ['eslint']);
   grunt.registerTask('test', ['nodeunit']);
 };
 

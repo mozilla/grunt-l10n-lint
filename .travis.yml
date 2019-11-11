@@ -1,8 +1,7 @@
 language: node_js
 
 node_js:
-  - "0.10"
-  - "4"
+  - "10"
 
 sudo: false
 
@@ -18,8 +17,7 @@ notifications:
     skip_join: false
 
 before_install:
-  # Update to latest npm 2
-  - npm install -g npm@2
+  - npm install -g npm@6
   - npm install -g grunt-cli
 
 install:
