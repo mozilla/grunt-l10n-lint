@@ -1,6 +1,6 @@
 {
   "name": "grunt-l10n-lint",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A grunt task to check l10n .po files for unexpected/malformed HTML.",
   "main": "Gruntfile.js",
   "scripts": {
