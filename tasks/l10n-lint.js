@@ -18,10 +18,11 @@ const checkTranslation = CheckTranslation.checkTranslation;
 const MalformedHTMLError = CheckTranslation.MalformedHTMLError;
 const UnexpectedTagError = CheckTranslation.UnexpectedTagError;
 const UnexpectedAttributeError = CheckTranslation.UnexpectedAttributeError;
-const UnexpectedAttributeValueError = CheckTranslation.UnexpectedAttributeValueError;
+const UnexpectedAttributeValueError =
+  CheckTranslation.UnexpectedAttributeValueError;
 
 function getUntranslatedStrings(grunt, untranslatedFiles) {
-  return untranslatedFiles.reduce(function (accumulator, file) {
+  return untranslatedFiles.reduce(function(accumulator, file) {
     var contents = grunt.file.read(file);
     var fileStrings = extractUntranslated(contents);
 
@@ -30,29 +31,29 @@ function getUntranslatedStrings(grunt, untranslatedFiles) {
 }
 
 function flattenSourceList(grunt, files) {
-  return files.reduce(function (accumulator, line) {
+  return files.reduce(function(accumulator, line) {
     return accumulator.concat(line.src);
   }, []);
 }
 
 function getTranslations(grunt, translatedFiles) {
-  return translatedFiles.map(function (src) {
+  return translatedFiles.map(function(src) {
     var contents = grunt.file.read(src);
     var translatedStrings = extractTranslated(contents);
 
     return {
       src: src,
-      translations: translatedStrings
+      translations: translatedStrings,
     };
   });
 }
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   'use strict';
 
-  grunt.registerMultiTask('l10n-lint', 'Lint your translations', function () {
+  grunt.registerMultiTask('l10n-lint', 'Lint your translations', function() {
     var options = this.options({
-      untranslated: []
+      untranslated: [],
     });
 
     /**
@@ -74,32 +75,44 @@ module.exports = function (grunt) {
     var translatedFiles = flattenSourceList(grunt, this.files);
     var translations = getTranslations(grunt, translatedFiles);
 
-    translations.forEach(function (translation) {
+    translations.forEach(function(translation) {
       var translatedStrings = translation.translations;
       var src = translation.src;
 
-      translatedStrings.forEach(function (translation) {
+      translatedStrings.forEach(function(translation) {
         grunt.log.debug(translation);
 
-        checkTranslation(translation, tagData, function (err) {
-          if (! err) {
+        checkTranslation(translation, tagData, function(err) {
+          if (!err) {
             return;
           }
 
           grunt.log.debug('Error:\n', JSON.stringify(err, null, 2));
 
           if (err instanceof MalformedHTMLError) {
-            grunt.log.error('MALFORMED HTML (%s): %s',
-                src, translation);
+            grunt.log.error('MALFORMED HTML (%s): %s', src, translation);
           } else if (err instanceof UnexpectedTagError) {
-            grunt.log.error('UNEXPECTED TAG (%s): %s [%s]',
-                src, err.tagName, translation);
+            grunt.log.error(
+              'UNEXPECTED TAG (%s): %s [%s]',
+              src,
+              err.tagName,
+              translation
+            );
           } else if (err instanceof UnexpectedAttributeError) {
-            grunt.log.error('UNEXPECTED ATTRIBUTE (%s): %s [%s]',
-                src, err.attributeName, translation);
+            grunt.log.error(
+              'UNEXPECTED ATTRIBUTE (%s): %s [%s]',
+              src,
+              err.attributeName,
+              translation
+            );
           } else if (err instanceof UnexpectedAttributeValueError) {
-            grunt.log.error('UNEXPECTED ATTRIBUTE VALUE: (%s): %s=%s [%s]',
-                src, err.attributeName, err.attributeValue, translation);
+            grunt.log.error(
+              'UNEXPECTED ATTRIBUTE VALUE: (%s): %s=%s [%s]',
+              src,
+              err.attributeName,
+              err.attributeValue,
+              translation
+            );
           }
         });
       });
@@ -108,13 +121,23 @@ module.exports = function (grunt) {
     var fileCount = translations.length;
 
     if (this.errorCount !== 0) {
-      grunt.fail.warn('Found ' + this.errorCount + ' ' +
+      grunt.fail.warn(
+        'Found ' +
+          this.errorCount +
+          ' ' +
           grunt.util.pluralize(this.errorCount, 'error/errors') +
-          ' in ' + fileCount + ' files');
+          ' in ' +
+          fileCount +
+          ' files'
+      );
     } else {
-      grunt.log.writeln('Checked ' + fileCount + ' ' +
+      grunt.log.writeln(
+        'Checked ' +
+          fileCount +
+          ' ' +
           grunt.util.pluralize(fileCount, 'file/files') +
-          ' for invalid translations');
+          ' for invalid translations'
+      );
     }
   });
 };

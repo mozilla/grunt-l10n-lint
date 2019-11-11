@@ -67,6 +67,17 @@ exports.check_translations = {
     );
   },
 
+  'valid self-closing tag - br': function (test) {
+    checkTranslation(
+      'translated prefix <br> translated suffix',
+      expectedTagData,
+      function (err) {
+        test.equal(err, null);
+        test.done();
+      }
+    );
+  },
+
   'unexpected tag': function (test) {
     checkTranslation(
       '<img>No img expected</img>',
@@ -242,7 +253,6 @@ exports.check_translations = {
       }
     );
   },
-
   'malformed html - nested tags closed out of order': function (test) {
     checkTranslation(
       '<span><a href="/signin">Signin</span></a>',
