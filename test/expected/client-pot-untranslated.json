@@ -217,5 +217,6 @@
   "October",
   "November",
   "December",
-  "Day"
+  "Day",
+  "prefix <br>suffix"
 ]

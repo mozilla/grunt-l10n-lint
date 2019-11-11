@@ -1021,3 +1021,7 @@ msgstr ""
 #: app/scripts/templates/partial/coppa-date-picker.mustache:34
 msgid "Day"
 msgstr ""
+
+#: app/scripts/templates/complete_reset_password.mustache:1
+msgid "prefix <br>suffix"
+msgstr ""
