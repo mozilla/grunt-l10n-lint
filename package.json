@@ -21,7 +21,7 @@
   "devDependencies": {
     "eslint-config-fxa": "^3.0.0",
     "grunt": "^1.0.4",
-    "grunt-contrib-nodeunit": "^2.0.0",
+    "grunt-contrib-nodeunit": "^5.0.0",
     "grunt-eslint": "^22.0.0"
   },
   "readmeFilename": "README.md"
